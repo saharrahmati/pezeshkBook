@@ -1,9 +1,15 @@
+@font-face {
+  font-family: "Yekan";   /*Can be any text*/
+  src: local("Yekan"),
+    url("/fonts/Yekan.ttf") format("truetype");
+}
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: Yekan,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  direction: rtl;
 }
 
 a {
