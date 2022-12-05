@@ -12,9 +12,11 @@ export type DetailsType = {
 
 export type Like = {
     handleLike:function;
-    Like:number
+    Like:number;
+    likeLoading:boolean
 }
 
 export type DisLike = {
     handleDisLike:function
+    disLikeLoading:boolean
 }

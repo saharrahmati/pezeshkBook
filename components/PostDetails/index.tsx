@@ -11,28 +11,36 @@ import Image from "next/image"
 
 const Details : React.FC <DetailsType> = ({getPostDetails,id,isLoading,title,content,is_favourited,thumbnail_url,rate,favorite_count}) => {
     
-    const [Like,setLike] = useState(favorite_count)
+    const [like,setLike] = useState(favorite_count)
     const [showDisLike,setShowDisLike] = useState(is_favourited)
+    const [likeLoading,setLikeLoading] = useState(false)
+    const [disLikeLoading,setDisLikeLoading] = useState(false)
 
     const handleLike = () => {
+        setLikeLoading(true)
         axios.post( `${BaseUrl2}/${id}/like`,{entity:favorite_count+1},{headers: {Authorization: `Bearer ${Token}`}}
         ).then((res)=>{
             const count = res.data.entity
             setLike(count)
             setShowDisLike(is_favourited)
+            setLikeLoading(false)
         }).catch((error)=>{
             if(!error.response.data.is_success){
                 alert(error.response.data.message)
             }
+            setLikeLoading(false)
         })
     }    
     const handleDisLike =() => {
-            axios.post( `${BaseUrl2}/${id}/dislike`,{entity: Like - 1},{headers: {Authorization: `Bearer ${Token}`}}
+            setDisLikeLoading(true)
+            axios.post( `${BaseUrl2}/${id}/dislike`,{entity: like - 1},{headers: {Authorization: `Bearer ${Token}`}}
             ).then((res)=>{
-                setLike(Like -1 )
+                setLike(like -1 )
                 setShowDisLike(!is_favourited)
+                setDisLikeLoading(false)
             }).catch((err)=>{
                 console.log('err',err)
+                setDisLikeLoading(false)
             })
     }
     return(
@@ -51,8 +59,8 @@ const Details : React.FC <DetailsType> = ({getPostDetails,id,isLoading,title,con
                             />
                             <span>{rate}</span>
                         </div>
-                        <LikeCounter Like={Like} handleLike={handleLike}/>
-                        {showDisLike ? <DisLikeCounter handleDisLike={handleDisLike} />: null}
+                        <LikeCounter Like={like} handleLike={handleLike} likeLoading={likeLoading}/>
+                        {showDisLike ? <DisLikeCounter disLikeLoading={disLikeLoading} handleDisLike={handleDisLike} />: null}
                     </div>
                 </div>
                 <div className={classes.ImgBox}>
