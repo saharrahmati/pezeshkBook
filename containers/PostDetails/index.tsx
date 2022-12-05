@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 import { useRouter } from "next/router";
 import Details from "../../components/PostDetails";
 import {DetailsType} from "../../components/PostDetails/types.d"
-import {BaseUrl2,Token} from '../../pages/api/config'
-
+import axios , {Token} from "../../axios";
 
 function PostDetailsContainer () {
     const router = useRouter()
@@ -16,7 +15,7 @@ function PostDetailsContainer () {
 
     const getPostDetails = () => {
         setIsLoading(true)
-        axios.get(`${BaseUrl2}/${id}`,{  headers: {Authorization: `Bearer ${Token}`}}).then((res)=>{
+        axios.get(`/posts/${id}`,{  headers: {Authorization: `Bearer ${Token}`}}).then((res)=>{
             setPostDetails(res.data.entity.post)
             setIsLoading(false)
         }).catch(()=>setIsLoading(false))
@@ -39,7 +38,6 @@ function PostDetailsContainer () {
                 is_favourited={postDetails.is_favourited}
                 isLoading={isLoading}
                 id={postDetails?.id}
-                getPostDetails={getPostDetails}
             />}
         </>
     )

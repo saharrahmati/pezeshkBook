@@ -7,7 +7,6 @@ export type DetailsType = {
     is_favourited:boolean;
     isLoading:boolean;
     id:number;
-    getPostDetails:function
 };
 
 export type Like = {

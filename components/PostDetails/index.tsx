@@ -4,12 +4,11 @@ import SkeltonLoading from '../UI/SkeletonLoading'
 import classes from './index.module.scss'
 import LikeCounter from './_component/LikePost'
 import DisLikeCounter from "./_component/DislikePost";
-import axios from "axios";
-import {BaseUrl2,Token} from '../../pages/api/config'
+import axios ,{Token} from "../../axios";
 import Image from "next/image"
 
 
-const Details : React.FC <DetailsType> = ({getPostDetails,id,isLoading,title,content,is_favourited,thumbnail_url,rate,favorite_count}) => {
+const Details : React.FC <DetailsType> = ({id,isLoading,title,content,is_favourited,thumbnail_url,rate,favorite_count}) => {
     
     const [like,setLike] = useState(favorite_count)
     const [showDisLike,setShowDisLike] = useState(is_favourited)
@@ -18,7 +17,7 @@ const Details : React.FC <DetailsType> = ({getPostDetails,id,isLoading,title,con
 
     const handleLike = () => {
         setLikeLoading(true)
-        axios.post( `${BaseUrl2}/${id}/like`,{entity:favorite_count+1},{headers: {Authorization: `Bearer ${Token}`}}
+        axios.post( `posts/${id}/like`,{entity:favorite_count+1},{headers: {Authorization: `Bearer ${Token}`}}
         ).then((res)=>{
             const count = res.data.entity
             setLike(count)
@@ -33,7 +32,7 @@ const Details : React.FC <DetailsType> = ({getPostDetails,id,isLoading,title,con
     }    
     const handleDisLike =() => {
             setDisLikeLoading(true)
-            axios.post( `${BaseUrl2}/${id}/dislike`,{entity: like - 1},{headers: {Authorization: `Bearer ${Token}`}}
+            axios.post( `posts/${id}/dislike`,{entity: like - 1},{headers: {Authorization: `Bearer ${Token}`}}
             ).then((res)=>{
                 setLike(like -1 )
                 setShowDisLike(!is_favourited)

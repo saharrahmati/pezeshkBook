@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios from '../../axios'
 import { useRouter } from 'next/router'
 import Posts from '../../components/Posts'
 
@@ -12,7 +12,7 @@ function PostsContainer () {
 
     const getPosts = ()=>{
         setIsLoading(true);
-        axios.get('https://api.fishdelivery.ir/api/v1/posts').then((res)=>{
+        axios.get('/posts').then((res)=>{
             setPosts(res.data.entity.posts.data)
             setIsLoading(false);
         }).catch(() => {
