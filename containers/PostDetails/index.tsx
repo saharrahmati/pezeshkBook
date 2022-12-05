@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-//import axios from "axios";
 import { useRouter } from "next/router";
 import Details from "../../components/PostDetails";
 import {DetailsType} from "../../components/PostDetails/types.d"
