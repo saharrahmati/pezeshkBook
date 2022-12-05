@@ -25,7 +25,6 @@ const Details : React.FC <DetailsType> = ({getPostDetails,id,isLoading,title,con
             setShowDisLike(is_favourited)
             setLikeLoading(false)
         }).catch((error)=>{
-            console.log(error)
             if(!error?.response?.data?.is_success){
                 alert(error?.response?.data?.message || error?.response?.data?.error)
             }
@@ -40,7 +39,6 @@ const Details : React.FC <DetailsType> = ({getPostDetails,id,isLoading,title,con
                 setShowDisLike(!is_favourited)
                 setDisLikeLoading(false)
             }).catch((err)=>{
-                console.log('err',err)
                 setDisLikeLoading(false)
             })
     }
