@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
-import Posts from '../components/Posts'
+import PostsContainer from '../containers/Posts'
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Posts />
+        <PostsContainer />
       </main>
     </div>
   )
