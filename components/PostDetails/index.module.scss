@@ -29,19 +29,11 @@
     .Content {
         padding: 1rem 2rem;
     }
-    .Like{
-        cursor: pointer;
-        text-align: center;
-        position: relative;
-        .CountLike {
-            position: absolute;
-            top: 0.2rem;
-            left: 0.3rem;
-            font-size: 17px;
-        }
-        img {
-            width: 37px;
-            margin: 0.5rem;
-        }
+    .rate {
+       span {
+            position: relative;
+            top: -0.5rem;
+            right: -1.2rem;
+       }
     }
 }
