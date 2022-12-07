@@ -1,14 +1,15 @@
-
 .LikeBox {
     margin: 0 .2rem;
     padding: 0.2rem;
+
     span {
         position: relative;
         top: -.4rem
     }
+
     .LikeBtn {
         background-color: transparent;
-        border:none;
+        border: none;
         cursor: pointer;
     }
 }

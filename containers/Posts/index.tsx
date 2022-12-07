@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from '../../axios'
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
 import Posts from '../../components/Posts'
 
 
-function PostsContainer () {
-    const [posts,setPosts] = useState([])
-    const [isLoading,setIsLoading] = useState(false)
+function PostsContainer() {
+    const [posts, setPosts] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     const router = useRouter()
 
-    const getPosts = ()=>{
-        setIsLoading(true);
-        axios.get('/posts').then((res)=>{
+    useEffect(() => {
+        getPosts()
+    }, [])
+
+    const getPosts = () => {
+        setIsLoading(true)
+        axios.get('/posts').then((res) => {
             setPosts(res.data.entity.posts.data)
-            setIsLoading(false);
+            setIsLoading(false)
         }).catch(() => {
-            setIsLoading(false);
-         })
-    }
-    const handlePostDetails = (id:number) =>{
-        router.push({
-          pathname: '/postDetails',
-          query: { postId:id },
+            setIsLoading(false)
         })
     }
-    useEffect(()=>{
-        getPosts()
-    },[])
-    
+
+    const handlePostDetails = (id: number) => {
+        router.push({
+            pathname: '/postDetails',
+            query: {postId: id},
+        })
+    }
+
     return (
-        <>
-            <Posts posts={posts} isLoading={isLoading} handlePostDetails={handlePostDetails}/>
-        </>
+        <Posts posts={posts} isLoading={isLoading} handlePostDetails={handlePostDetails} />
     )
 }
 

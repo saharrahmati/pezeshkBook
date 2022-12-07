@@ -3,15 +3,15 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 type loading = {
-    height: number; 
+    height: number;
     width: number;
-    circle:boolean;
- }
+    circle: boolean;
+}
 
-function SkeltonLoading (props:loading) {
+const SkeletonLoading = (props: loading) => {
     return (
         <Skeleton height={props.height} width={props.width} circle={props.circle} />
     )
 }
 
-export default SkeltonLoading
+export default SkeletonLoading

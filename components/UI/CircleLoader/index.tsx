@@ -1,9 +1,9 @@
 import React from 'react'
 import classes from './index.module.scss'
 
-function CircleLoader () {
+const CircleLoader = () => {
     return (
-        <div className={classes.Loader}></div>
+        <div className={classes.Loader} />
     )
 }
 
